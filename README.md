@@ -1,3 +1,9 @@
+# Поточне завдання:
+### [Домашнє завдання на 12.04.2023](https://github.com/SurkovKostiantyn/PHPTestProject/blob/main/README.md)
+# Попередні завдання:
+### [Тут поки що пусто](https://github.com/SurkovKostiantyn/PHPTestProject/blob/main/README.md)
+
+
 # Домашнє завдання на 12.04.2023
 ## Підготовка до виконання:
 ### 1. У вас має буди створений акаунт на [GitHub](https://github.com)
