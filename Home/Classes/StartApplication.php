@@ -5,7 +5,10 @@ namespace Phpcourse\Myproject\Classes;
 use Phpcourse\Myproject\Classes\Controllers\NotFoundController;
 use Phpcourse\Myproject\Classes\Router\Router;
 use Phpcourse\Myproject\Classes\Traits\DebugTrait;
-use SmartyException;
+
+use Monolog\Level;
+use Monolog\Logger;
+use Monolog\Handler\StreamHandler;
 
 class StartApplication
 {
@@ -24,16 +27,24 @@ class StartApplication
         self::debugConsole($this->URI);
     }
 
-    /**
-     * @throws SmartyException
-     */
-    public function run(): void{
+    public function run(): void {
+        $log = new Logger('name');
+        $log->pushHandler(new StreamHandler('logs/main.log', Level::Debug));
+
         try{ // спробуємо знайти збіг нашого URI з патерном роутера
             $match = $this->routerData->findRoute($this->URI);
             $controller = $match[self::CONTROLLER];
             $action = $match[self::ACTION];
             (new $controller)->$action();
+
+            // DEBUG
+            self::debugDump($match);
+            self::debugDump($controller);
+            self::debugDump($action);
+            $log->info('OK');
+            //
         }catch(\Throwable $e){
+            $log->error($e->getMessage() . $e->getCode() . " URI=$this->URI");
             (new NotFoundController)->showErrorPage(
                 $e->getMessage(),
                 $e->getCode(),
