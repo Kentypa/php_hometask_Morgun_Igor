@@ -14,17 +14,28 @@ class StartApplication
 {
     use DebugTrait;
     private string $URI;
-    // об'єкт класу Router буде записаний в цю змінну
     private object $routerData;
-    // просто константи
     const CONTROLLER = 1;
     const ACTION = 2;
 
-    public function __construct(readonly Router $router, string $URI)
+    // приватний статичний екземпляр класу
+    private static ?StartApplication $instance = null;
+
+    // приватний конструктор
+    private function __construct(readonly Router $router, string $URI)
     {
         $this->URI = $URI;
         $this->routerData = $router;
         self::debugConsole($this->URI);
+    }
+
+    // публічний статичний метод для отримання єдиного екземпляра класу
+    public static function getInstance(Router $router, string $URI): StartApplication
+    {
+        if (self::$instance === null) {
+            self::$instance = new StartApplication($router, $URI);
+        }
+        return self::$instance;
     }
 
     public function run(): void {
