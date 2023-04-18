@@ -7,6 +7,7 @@
 
 namespace Phpcourse\Myproject\Classes\Rendering;
 
+<<<<<<< HEAD
 use Latte\Engine;
 use Phpcourse\Myproject\Classes\Traits\DebugTrait;
 use Phpcourse\Myproject\Classes\Traits\MonologTrait;
@@ -22,5 +23,17 @@ class Rendering{
 
         $latte->render('templates/default/index.latte', $data); // відображаємо шаблон
 
+=======
+use Latte;
+
+
+class Rendering{
+    public function __construct(){
+        $latte = new Latte\Engine;
+        $latte->setTempDirectory('/tempdir');
+
+        $mainParams = ['name' => 'Kentik'];
+        $latte->render('templates/default/index.latte', $mainParams);
+>>>>>>> fe83195d1ba034e0494bc52861a4111d2a7677e3
     }
 }

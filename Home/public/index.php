@@ -1,6 +1,12 @@
 <?php
+<<<<<<< HEAD
     session_start(); // Функція для запуску сесії
     $debug = false; // Параметр, що належить до налагоджувальної інформації
+=======
+    session_start();
+
+    require_once __DIR__.'/../../vendor/autoload.php';
+>>>>>>> fe83195d1ba034e0494bc52861a4111d2a7677e3
 
     require_once __DIR__.'/../../vendor/autoload.php'; // Автозавантаження класів
 
@@ -24,8 +30,13 @@
     //news
     $router->addRoute('/news',NewsController::class,'index');
 
+<<<<<<< HEAD
     // Створюємо об'єкт класу StartApplication та передаємо йому об'єкт класу Router та запит з адресної стрічки
     $app = StartApplication::getInstance($router, $_SERVER['REQUEST_URI'] ?? '/');
 
     // Запускаємо метод run() класу StartApplication
     $app->run();
+=======
+    $app = StartApplication::getInstance($router, $_SERVER['REQUEST_URI']);
+    $app->run();
+>>>>>>> fe83195d1ba034e0494bc52861a4111d2a7677e3
