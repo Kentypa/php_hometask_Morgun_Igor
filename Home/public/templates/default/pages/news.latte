@@ -1,0 +1,28 @@
+
+<style>
+    h2   
+    {
+        color: blue;
+        font-family: verdana;
+    }
+    p    
+    {
+        color: red;
+        font-family: courier;
+    }
+
+</style>
+
+
+{block content}
+    <h1>News</h1>
+    <ul>
+        {foreach $news as $item}
+            <li>
+                <h2>{$item['title']}</h2>
+                <p>{$item['text']}</p>
+                <p>Date: {$item['date']}</p>
+            </li>
+        {/foreach}
+    </ul>
+{/block}
